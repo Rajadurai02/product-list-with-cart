@@ -1,0 +1,8 @@
+<h4 class="cart-title">Your Cart ({{cartCount}})</h4>
+<div class="empty-cart-container" *ngIf="cartCount < 1; else cartPreview">
+    <img src="/images/illustration-empty-cart.svg" alt="empty-cart">
+    <p class="empty-cart-text">Your added items will appear here</p>
+</div>
+<ng-template #cartPreview>
+    <div class="cart-preview-container"></div>
+</ng-template>
