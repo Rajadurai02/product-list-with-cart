@@ -1,8 +1,33 @@
-<h4 class="cart-title">Your Cart ({{cartCount}})</h4>
-<div class="empty-cart-container" *ngIf="cartCount < 1; else cartPreview">
+<h4 class="cart-title">Your Cart ({{cartList.length}})</h4>
+<div class="empty-cart-container" *ngIf="cartList.length < 1; else cartPreview">
     <img src="/images/illustration-empty-cart.svg" alt="empty-cart">
     <p class="empty-cart-text">Your added items will appear here</p>
 </div>
 <ng-template #cartPreview>
-    <div class="cart-preview-container"></div>
+    <div class="cart-preview-container">
+        <div class="cart-product-info-container" *ngFor="let cartProduct of cartList">
+            <div class="cart-product-info">
+                <p class="product-name">{{cartProduct.name}}</p>
+                <span class="quantity">{{cartProduct.quantity}}x</span>
+                <span class="product-price">&#64; ${{cartProduct.price}}</span>
+                <span class="total-product-price">${{cartProduct.quantity * cartProduct.price}}</span>
+            </div>
+            <div class="cancel-product-container">
+                <div class="remove-item-container">
+                    <img src="/images/icon-remove-item.svg" alt="remove item">
+                </div>
+            </div>
+        </div>
+        <div class="order-total-container">
+            <p class="order-total-text">Order Total</p>
+            <h2 class="order-amount">${{getTotalPrice()}}</h2>
+        </div>
+        <div class="msg-container">
+            <img src="images/icon-carbon-neutral.svg" alt="carbon neutral">
+            <p class="cart-msg">This is a <strong>carbon-neutral</strong> delivery</p>
+        </div>
+        <div class="confirm-order-btn-container">
+            <button class="confirm-order-btn">Confirm Order</button>
+        </div>
+    </div>
 </ng-template>
