@@ -6,12 +6,12 @@
                 <img src="{{product.image.desktop}}" alt="{{product.name}}">
             </div>
             <div class="card-btn-container">
-                <button class="add-to-cart-button" [ngClass]="{'hide': selectedProducts[product.category]}" (click)="selectProduct(product)">
+                <button class="add-to-cart-button" [class.hide]="product.quantity > 0" (click)="selectProduct(product)">
                     <img src="/images/icon-add-to-cart.svg" alt="add to cart icon">
                     <span class="btn-text">Add to Cart</span>
                 </button>
-                <div class="quantity-container" [ngClass]="{'show': selectedProducts[product.category]}">   
-                    <div class="quantity-img-container">
+                <div class="quantity-container" [class.show]="product.quantity > 0">   
+                    <div class="quantity-img-container" (click)="decreaseProductQuantity(product.category)" (keyUp)="decreaseProductQuantity(product.category)">
                         <img class="quantity-img" src="images/icon-decrement-quantity.svg" alt="decrement">
                     </div>                
                     <span class="quantity-count">{{product.quantity}}</span>

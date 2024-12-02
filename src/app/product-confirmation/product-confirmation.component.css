@@ -1,0 +1,123 @@
+.modal{
+    width: 98vw;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.6);
+    top: 0px;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content{
+    width: 50%;
+    height: fit-content;
+    background-color: #fff;
+    min-width: 400px;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.order-confirm-img-container img{
+    width: 30px;
+}
+
+.order-confirmation-header{
+    color: var(--Rose-900);
+    margin: 1rem 0 0 0;
+}
+
+.order-greetings{
+    color: var(--Rose-400);
+    margin: 5px 0px;
+    font-size: 13px;
+}
+
+.order-preview-container{
+    background-color: var(--Rose-100);
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 20px 0px 10px 0px;
+}
+
+.product-preview{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--Rose-300);
+    padding-bottom: 10px;
+}
+
+.product-info{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.thumbnail-container img{
+    width: 50px;
+    border-radius: 3px;
+}
+
+.product-details{
+    margin: 5px;
+}
+
+.product-details p, .product-details span{
+    margin: 0px;    
+    font-size: 13px;
+}
+
+.product-details .product-name{
+    color: var(--Rose-900);
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.product-details .quantity{
+    color: var(--Red);
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.product-details .amount{
+    color: var(--Rose-400);
+    font-weight: 600;
+}
+
+.product-amount p{
+    font-weight: 600;
+    color: var(--Rose-900);
+}
+
+.order-total-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.order-total-text{
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--Rose-900);
+}
+
+.total-amount{
+    color: var(--Rose-900);
+}
+
+.new-order-btn{
+    color: var(--Rose-50);
+    background-color: var(--Red);
+    width: 100%;
+    border: 1px solid var(--Red);
+    font-size: 12px;
+    margin: 20px 0px;
+    height: 40px;
+    border-radius: 20px;
+    font-weight: 500;
+    letter-spacing:0.1cap;
+    cursor: pointer;
+}

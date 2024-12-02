@@ -13,7 +13,7 @@
                 <span class="total-product-price">${{cartProduct.quantity * cartProduct.price}}</span>
             </div>
             <div class="cancel-product-container">
-                <div class="remove-item-container">
+                <div class="remove-item-container" (click)="cancelProduct(cartProduct.category)" (keyUp)="cancelProduct(cartProduct.category)">
                     <img src="/images/icon-remove-item.svg" alt="remove item">
                 </div>
             </div>
@@ -27,7 +27,7 @@
             <p class="cart-msg">This is a <strong>carbon-neutral</strong> delivery</p>
         </div>
         <div class="confirm-order-btn-container">
-            <button class="confirm-order-btn">Confirm Order</button>
+            <button class="confirm-order-btn" (click)="confirmOrder()">Confirm Order</button>
         </div>
     </div>
 </ng-template>

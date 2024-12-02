@@ -25,4 +25,19 @@ export class CartComponent {
   getTotalPrice(): number {
     return this.cartList.reduce((total, product) => total + ( product.price * product.quantity), 0);
   }
+
+  cancelProduct(productCategory: string){
+    const selectedProduct = this.cartList.find((p: IProduct) => p.category === productCategory);
+    if(selectedProduct){
+      selectedProduct.quantity = 0;
+      this.cartList = this.cartList.filter((p:IProduct) => p.category !== productCategory);
+    }
+  }
+
+  confirmOrder() {
+    const confirmationPopUp = document.getElementById("confirmationPopUp");
+    if(confirmationPopUp){
+      confirmationPopUp.classList.add("show");
+    }
+  }
 }

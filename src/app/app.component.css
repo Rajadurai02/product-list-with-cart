@@ -22,3 +22,7 @@
     height: fit-content;
     padding: 0 1rem;
 }
+
+#confirmationPopUp.show{
+    display: block;
+}

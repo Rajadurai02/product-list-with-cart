@@ -1,1 +1,37 @@
-<p>product-confirmation works!</p>
+<div class="modal">
+    <div class="modal-content">
+        <div class="order-confirm-img-container">
+            <img src="/images/icon-order-confirmed.svg" alt="order confirmation">
+        </div>
+        <h2 class="order-confirmation-header">
+            Order Confirmed
+        </h2>
+        <p class="order-greetings">
+            We hope you enjoy your food!
+        </p>
+        <div class="order-preview-container">
+            <div class="product-preview" *ngFor="let conProduct of confirmationOrderList">
+                <div class="product-info">
+                    <div class="thumbnail-container">
+                        <img src="{{conProduct.image.thumbnail}}" alt="thumbnail of product">
+                    </div>
+                    <div class="product-details">
+                        <p class="product-name">{{conProduct.name}}</p>
+                        <span class="quantity">{{conProduct.quantity}}x</span>
+                        <span class="amount">&#64; {{conProduct.price}}</span>
+                    </div>
+                </div>
+                <div class="product-amount">
+                    <p>$${{conProduct.quantity * conProduct.price}}</p>
+                </div>
+            </div>
+            <div class="order-total-container">
+                <p class="order-total-text">Order Total</p>
+                <h2 class="total-amount">${{getTotalPrice()}}</h2>
+            </div>            
+        </div>
+        <div class="new-order-container">
+            <button class="new-order-btn">Start New Order</button>
+        </div>
+    </div>
+</div>
