@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { IProduct } from '../Product';
-import { ProductListService } from '../product-list.service';
 import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-product-confirmation',
@@ -12,22 +12,19 @@ import { CommonModule } from '@angular/common';
 })
 export class ProductConfirmationComponent {
 
-  confirmationOrderList: IProduct[] = [];
-
-  constructor(private readonly _service: ProductListService) {
-
-  }
-  ngOnInit(){
-    this._service.cartList$.subscribe(data => {
-      this.confirmationOrderList = data;
-    })
-  }
+  @Input() confirmationOrderList: IProduct[] = [];
+  @Output() createNewOrderClicked = new EventEmitter<boolean>();
 
   getTotalPrice(): number {
     return this.confirmationOrderList.reduce((total, product) => total + ( product.price * product.quantity), 0);
   }
 
   createNewOrder(){
-    console.log('new order');
+    const confirmationPopUp = document.getElementById('confirmationPopUp');
+    if (confirmationPopUp) {
+      confirmationPopUp.classList.remove('show');
+      
+    }
+    this.createNewOrderClicked.emit(true);
   }
 }

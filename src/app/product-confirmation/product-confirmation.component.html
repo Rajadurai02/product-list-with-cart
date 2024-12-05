@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="product-amount">
-                    <p>$${{conProduct.quantity * conProduct.price}}</p>
+                    <p>${{conProduct.quantity * conProduct.price}}</p>
                 </div>
             </div>
             <div class="order-total-container">
@@ -31,7 +31,7 @@
             </div>            
         </div>
         <div class="new-order-container">
-            <button class="new-order-btn">Start New Order</button>
+            <button class="new-order-btn" (click)="createNewOrder()">Start New Order</button>
         </div>
     </div>
 </div>

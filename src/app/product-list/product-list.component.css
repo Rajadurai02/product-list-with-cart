@@ -1,3 +1,33 @@
+.main-content{
+    width: calc(100% - 100px);
+    min-height: calc(100vh - 40px);
+    background-color: var(--Rose-50);
+    display: flex;
+    justify-content: space-between;
+    padding: 40px 50px 20px 50px;
+    height: fit-content;
+}
+
+.confirmation-dialog{
+    display: none;
+}
+
+.product-list-container{
+    flex: 1;    
+}
+
+.cart-container{
+    width: 300px;
+    background-color: #fff;
+    border-radius: 10px;
+    height: fit-content;
+    padding: 0 1rem;
+}
+
+#confirmationPopUp.show{
+    display: block;
+}
+
 .product-title{
     color: var(--Rose-900);    
 }

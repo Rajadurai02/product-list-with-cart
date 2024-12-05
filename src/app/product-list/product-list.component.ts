@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { ProductListService } from '../product-list.service';
 import { CommonModule } from '@angular/common';
 import { IProduct } from '../Product';
+import { CartComponent } from '../cart/cart.component';
+import { ProductConfirmationComponent } from '../product-confirmation/product-confirmation.component';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CartComponent, ProductConfirmationComponent],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css',
 })
@@ -30,7 +32,7 @@ export class ProductListComponent {
   selectProduct(product: IProduct){
     product.quantity = 1;
     this.cartList.push(product);
-    this._productListService.UpdateProductCart(this.cartList);
+    //this._productListService.UpdateProductCart(this.cartList);
   }
 
   increaseProductQuantity(productCategory: string){
@@ -49,6 +51,12 @@ export class ProductListComponent {
         this._productListService.UpdateProductCart(this.cartList);
       }
     }
-    console.log(this.cartList);
+  }
+
+  createNewOrder(createNewOrder : boolean){
+    if(createNewOrder){
+      this.cartList = [];
+      this.getProductList();
+    }
   }
 }

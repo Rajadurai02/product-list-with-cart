@@ -15,3 +15,7 @@ html, body{
     --Rose-500: hsl(12, 20%, 44%);
     --Rose-900: hsl(14, 65%, 9%);
 }
+
+.modal-open{
+    overflow: hidden;
+}

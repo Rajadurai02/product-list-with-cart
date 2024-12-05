@@ -1,30 +1,60 @@
-<h2 class="product-title">Desserts</h2>
-<div class="product-list-card-container">
-    <div class="product-card" *ngFor="let product of productList">
+<div class="main-content">
+  <div class="product-list-container">
+    <h2 class="product-title">Desserts</h2>
+    <div class="product-list-card-container">
+      <div class="product-card" *ngFor="let product of productList">
         <div class="product-card-top">
-            <div class="card-img-container">
-                <img src="{{product.image.desktop}}" alt="{{product.name}}">
+          <div class="card-img-container">
+            <img src="{{ product.image.desktop }}" alt="{{ product.name }}" />
+          </div>
+          <div class="card-btn-container">
+            <button
+              class="add-to-cart-button"
+              [class.hide]="product.quantity > 0"
+              (click)="selectProduct(product)"
+            >
+              <img src="/images/icon-add-to-cart.svg" alt="add to cart icon" />
+              <span class="btn-text">Add to Cart</span>
+            </button>
+            <div class="quantity-container" [class.show]="product.quantity > 0">
+              <div
+                class="quantity-img-container"
+                (click)="decreaseProductQuantity(product.category)"
+                (keyUp)="decreaseProductQuantity(product.category)"
+              >
+                <img
+                  class="quantity-img"
+                  src="images/icon-decrement-quantity.svg"
+                  alt="decrement"
+                />
+              </div>
+              <span class="quantity-count">{{ product.quantity }}</span>
+              <div
+                class="quantity-img-container"
+                (click)="increaseProductQuantity(product.category)"
+                (keyUp)="increaseProductQuantity(product.category)"
+              >
+                <img
+                  class="quantity-img"
+                  src="images/icon-increment-quantity.svg"
+                  alt="increment"
+                />
+              </div>
             </div>
-            <div class="card-btn-container">
-                <button class="add-to-cart-button" [class.hide]="product.quantity > 0" (click)="selectProduct(product)">
-                    <img src="/images/icon-add-to-cart.svg" alt="add to cart icon">
-                    <span class="btn-text">Add to Cart</span>
-                </button>
-                <div class="quantity-container" [class.show]="product.quantity > 0">   
-                    <div class="quantity-img-container" (click)="decreaseProductQuantity(product.category)" (keyUp)="decreaseProductQuantity(product.category)">
-                        <img class="quantity-img" src="images/icon-decrement-quantity.svg" alt="decrement">
-                    </div>                
-                    <span class="quantity-count">{{product.quantity}}</span>
-                    <div class="quantity-img-container" (click)="increaseProductQuantity(product.category)" (keyUp)="increaseProductQuantity(product.category)">
-                        <img class="quantity-img" src="images/icon-increment-quantity.svg" alt="increment">
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
         <div class="product-card-bottom">
-            <p class="product-type">{{product.category}}</p>
-            <p class="product-name">{{product.name}}</p>
-            <p class="product-amount">${{product.price}}</p>
+          <p class="product-type">{{ product.category }}</p>
+          <p class="product-name">{{ product.name }}</p>
+          <p class="product-amount">${{ product.price }}</p>
         </div>
+      </div>
     </div>
+  </div>
+  <div class="cart-container">
+    <app-cart [cartList]="cartList"></app-cart>
+  </div>
+</div>
+<div class="confirmation-dialog" id="confirmationPopUp">
+  <app-product-confirmation [confirmationOrderList]="cartList" (createNewOrderClicked)="createNewOrder($event)"></app-product-confirmation>
 </div>
