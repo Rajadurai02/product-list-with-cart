@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
 import { ProductListService } from '../product-list.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { IProduct } from '../Product';
 import { CartComponent } from '../cart/cart.component';
 import { ProductConfirmationComponent } from '../product-confirmation/product-confirmation.component';
@@ -15,13 +15,20 @@ import { ProductConfirmationComponent } from '../product-confirmation/product-co
 export class ProductListComponent {
   productList:any = [];
   cartList:any = [];
-  constructor(private readonly _productListService:ProductListService) {
+  currentDevice:string = "desktop";
+  constructor(private readonly _productListService:ProductListService, @Inject(PLATFORM_ID) private platformId: object) {
     
   }
 
   ngOnInit(){
     this.getProductList();
+    if (isPlatformBrowser(this.platformId)) {
+      // This block will only run in the browser
+      this.checkDevice();
+      window.addEventListener('resize', this.checkDevice.bind(this));
+    }
   }
+
 
   getProductList(){
     this._productListService.GetProdouctList().subscribe(data =>{
@@ -32,7 +39,6 @@ export class ProductListComponent {
   selectProduct(product: IProduct){
     product.quantity = 1;
     this.cartList.push(product);
-    //this._productListService.UpdateProductCart(this.cartList);
   }
 
   increaseProductQuantity(productCategory: string){
@@ -57,6 +63,21 @@ export class ProductListComponent {
     if(createNewOrder){
       this.cartList = [];
       this.getProductList();
+    }
+    const bodyEle = document.body;
+      if (bodyEle) {
+        bodyEle.classList.remove('modal-open');
+      }
+  }
+
+  checkDevice(){
+    let windowWidth = window.innerWidth;
+    if (windowWidth < 768) {
+      this.currentDevice = 'mobile';
+    } else if (windowWidth >= 768 && windowWidth < 1024) {
+      this.currentDevice = 'tablet';
+    } else {
+      this.currentDevice = 'desktop';
     }
   }
 }

@@ -4,8 +4,8 @@
     <div class="product-list-card-container">
       <div class="product-card" *ngFor="let product of productList">
         <div class="product-card-top">
-          <div class="card-img-container">
-            <img src="{{ product.image.desktop }}" alt="{{ product.name }}" />
+          <div class="card-img-container" [class.selected-product]="product.quantity > 0">
+            <img [src]="product.image[currentDevice]" alt="{{ product.name }}" />
           </div>
           <div class="card-btn-container">
             <button
